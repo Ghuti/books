@@ -8,8 +8,8 @@
     foreach ($books as $book) { //echo '<li>' .$book['title'].'<li>' ;
      ?>
       <li>
-        <?php echo $book['title']; ?>
-        <?php echo '<img src="' . $book['imageLink'] .'">'; ?> 
+        <h1><?php echo $book['title']; ?></h1>
+        <?php echo '<img src="' . $book['imageLink'] .'">'; ?>
       </li>
 
      <?php
