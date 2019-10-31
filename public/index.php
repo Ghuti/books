@@ -8,6 +8,13 @@
     </head>
 
     <body>
-        <?php echo $content ?>
+        <nav class="navbar navbar-dark bg-dark">
+          <div class="container">
+            <h2 class="text-white">BOOKS</h2>
+          </div>
+        </nav>
+        <div class="container">
+          <?php echo $content ?>
+        </div>
     </body>
 </html>

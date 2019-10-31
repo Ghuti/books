@@ -1,20 +1,23 @@
 <?php $title = "Liste des livres" ?>
 <?php ob_start(); ?>
 <h1>LISTE DES LIVRES</h1>
-<p>Bienvenue sur la page des livre</p>
+<h3>Bienvenue sur la page des livre</h3>
 
 <ul>
-  <?php
-    foreach ($books as $book) { //echo '<li>' .$book['title'].'<li>' ;
-     ?>
+  <div class="row">
+    <?php
+      foreach ($books as $book) { //echo '<li>' .$book['title'].'<li>' ;
+      ?>
+
       <li>
         <h1><?php echo $book['title']; ?></h1>
         <?php echo '<img src="' . $book['imageLink'] .'">'; ?>
-      </li>
 
+      </li>
      <?php
     }
   ?>
+  </div>
 </ul>
 
 <pre>
