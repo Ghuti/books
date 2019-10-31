@@ -7,7 +7,11 @@
   <?php
     foreach ($books as $book) { //echo '<li>' .$book['title'].'<li>' ;
      ?>
-      <li><?php echo $book['title']; ?></li>
+      <li>
+        <?php echo $book['title']; ?>
+        <?php echo '<img src="' . $book['imageLink'] .'">'; ?> 
+      </li>
+
      <?php
     }
   ?>
