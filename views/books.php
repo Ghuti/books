@@ -2,8 +2,10 @@
 <?php ob_start(); ?>
 <h1>LIST OF BOOKS</h1>
 
+
+
 <ul style="list-style:none; margin-left:0; padding-left:0;">
-  <div class="row">
+  <div class="row text-center">
     <?php
       foreach ($books as $book) { //echo '<li>' .$book['title'].'<li>' ;
       ?>
@@ -11,7 +13,7 @@
       <li class="li-nop">
         <div class="card-group">
           <div class="card blups">
-            <?php echo '<img class="card-img img-nop" src="' . $book['imageLink'] .'">'; ?>
+            <?php echo '<img class="card-img" src="' . $book['imageLink'] .'">'; ?>
             <div class="card-body">
               <h5 class="card-title"><?php echo $book['title']; ?></h5>
               <p class="card-text">Author : <?php echo $book['author']; ?></p>
@@ -20,6 +22,7 @@
             </div>
             <div class="card-footer">
               <a role="button" class="btn btn-primary btn-block" href="<?php echo $book['link']; ?>">learn more</a>
+              <a role="button" class="btn btn-primary btn-block" href="<?php echo $book['link']; ?>">Add to the cart</a>
             </div>
           </div>
         </div>
