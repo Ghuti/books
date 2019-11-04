@@ -1,4 +1,4 @@
-<?php $title = "ezfezfezfzef" ?>
+<?php $title = "Home-buy your book" ?>
 <?php ob_start(); ?>
 
 <?php $content = ob_get_clean(); ?>
