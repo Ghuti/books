@@ -10,5 +10,6 @@ function listBooks()
 function showBook($id)
 {
   $book = getbook($id);
-  var_dump($book);
+  //var_dump($book);
+  require('views/book.php');
 }
