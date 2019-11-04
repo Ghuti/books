@@ -6,3 +6,9 @@ function listBooks()
   $books = getBooks();
   require('views/books.php');
 }
+
+function showBook($id)
+{
+  $book = getbook($id);
+  var_dump($book);
+}

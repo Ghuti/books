@@ -12,11 +12,18 @@
     <body>
         <nav class="navbar navbar-dark bg-dark">
           <div class="container">
-            <h2 class="text-white">BOOKS</h2>
+            <a href="/"><h2 class="text-white">BOOKS</h2></a>
+            <a href="?action=books">list of books</a>
           </div>
         </nav>
         <div class="container">
           <?php echo $content ?>
         </div>
+
+        <footer class="py-4 bg-dark text-white">
+          <div class="container text-center">
+            <small>Copyright &copy; Ghutilife</small>
+          </div>
+        </footer>
     </body>
 </html>
