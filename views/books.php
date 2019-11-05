@@ -11,28 +11,22 @@
       ?>
 
       <li class="li-nop">
-        <div class="card-group">
+        <div class="card">
           <div class="card blups">
-            <?php echo '<img class="card-img" src="' . $book['imageLink'] .'">'; ?>
+            <?php // echo '<img class="card-img" src="' . $book['imageLink'] .'">'; ?>
             <div class="card-body">
               <h5 class="card-title"><?php echo $book['title']; ?></h5>
-              <p class="card-text">Author : <?php echo $book['author']; ?></p>
-              <p class="card-text">country : <?php echo $book['country']; ?></p>
-              <p class="card-text">language : <?php echo $book['language']; ?></p>
             </div>
             <div class="card-footer">
-              <a role="button" class="btn btn-primary btn-block" href="<?php echo $book['link']; ?>">learn more</a>
+              <a role="button" class="btn btn-primary btn-block" href="?action=book&id=<?php echo $book['id'];?>">learn more</a>
               <a role="button" class="btn btn-primary btn-block" href="<?php echo $book['link']; ?>">Add to the cart</a>
             </div>
           </div>
         </div>
-
-
-
       </li>
-     <?php
+      <?php
     }
-  ?>
+    ?>
   </div>
 </ul>
 

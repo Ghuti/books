@@ -1,13 +1,27 @@
 <?php
 
+require_once('utils/db.php');
+
 function getBooks()
 {
+  $db = dbConnect();
+
+  $stmt = $db->prepare('SELECT
+    b.*, a.name AS author
+    FROM books AS b
+    LEFT JOIN authors AS a
+    ON b.author_id = a.id
+  ');
+
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  /*
   $file = file_get_contents('json/books.json');
   $books = json_decode($file, true);
-  return $books;
+  return $books;*/
 }
 
-function getBook($id)
+/*function getBook($id)
 {
   $file = file_get_contents('json/books.json');
   $books = json_decode($file, true);
@@ -22,4 +36,4 @@ function getBook($id)
     }
   }
   return $result;
-}
+}*/

@@ -2,12 +2,12 @@ body {
   background-color: #999999;
 }
 
-.blups {
+/*.blups {
   width: 20rem;
-}
+}*/
 
 .li-nop{
   display: flex;
   margin-left:1em;
-  margin-top: 1em;+-
+  margin-top: 1em;
 }
