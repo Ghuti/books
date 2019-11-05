@@ -41,3 +41,4 @@
 <?php $content = ob_get_clean(); ?>
 
 <?php require('public/index.php'); ?>
+<!-- echo '<img class="card-img" src="' . file_exists($book['image']) ? $book['image'] : "".'">'; -->
