@@ -4,31 +4,28 @@
 
 
 
-<ul style="list-style:none; margin-left:0; padding-left:0;">
-  <div class="row text-center">
+  <div class="row">
     <?php
       foreach ($books as $book) { //echo '<li>' .$book['title'].'<li>' ;
       ?>
-
-      <li class="li-nop">
-        <div class="card">
-          <div class="card blups">
-            <?php // echo '<img class="card-img" src="' . $book['imageLink'] .'">'; ?>
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $book['title']; ?></h5>
-            </div>
-            <div class="card-footer">
-              <a role="button" class="btn btn-primary btn-block" href="?action=book&id=<?php echo $book['id'];?>">learn more</a>
-              <a role="button" class="btn btn-primary btn-block" href="<?php echo $book['link']; ?>">Add to the cart</a>
+        <div class="col-md-3 nop">
+          <div class="card">
+            <div class="card blups">
+              <?php echo '<img class="card-img" src="' . $book['image'] .'">'; ?>
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $book['title']; ?></h5>
+              </div>
+              <div class="card-footer">
+                <a role="button" class="btn btn-primary btn-block" href="?action=book&id=<?php echo $book['id'];?>">learn more</a>
+                <a role="button" class="btn btn-primary btn-block" href="<?php echo $book['link']; ?>">Add to the cart</a>
+              </div>
             </div>
           </div>
         </div>
-      </li>
       <?php
     }
     ?>
   </div>
-</ul>
 
 <!--pre>
 <?php// var_dump($books); ?>

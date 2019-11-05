@@ -21,9 +21,24 @@ function getBooks()
   return $books;*/
 }
 
-/*function getBook($id)
+function getBook($id)
 {
-  $file = file_get_contents('json/books.json');
+  $db = dbConnect();
+
+  $stmt = $db->prepare('SELECT
+    b.*, a.name AS author
+    FROM books AS b
+    LEFT JOIN authors AS a
+    ON b.author_id = a.id
+    WHERE books.id = :id
+  ');
+
+  $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+  $stmt->execute();
+
+  return $stmt->fetch();
+  /*$file = file_get_contents('json/books.json');
   $books = json_decode($file, true);
 
   $result = null;
@@ -35,5 +50,5 @@ function getBooks()
       $result = $book;
     }
   }
-  return $result;
-}*/
+  return $result;*/
+}
