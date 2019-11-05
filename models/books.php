@@ -30,7 +30,7 @@ function getBook($id)
     FROM books AS b
     LEFT JOIN authors AS a
     ON b.author_id = a.id
-    WHERE books.id = :id
+    WHERE b.id = :id
   ');
 
   $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -38,17 +38,5 @@ function getBook($id)
   $stmt->execute();
 
   return $stmt->fetch();
-  /*$file = file_get_contents('json/books.json');
-  $books = json_decode($file, true);
-
-  $result = null;
-
-  foreach ($books as $book)
-  {
-    if ($book['id'] === $id)
-    {
-      $result = $book;
-    }
-  }
-  return $result;*/
 }
+?>
