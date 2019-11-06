@@ -34,6 +34,41 @@
     }
     ?>
   </div>
+  <div>
+    <nav aria-label="Navigation">
+      <ul class="pagination ustify-content-center mt-5">
+      <?php if ($page === 1) {?>
+        <li class="page-item disabled ">
+          <span class="page-link">Précedent</span>
+        </li>
+      <?php }else {?>
+        <li class="page-item">
+          <a class="page-link" href="?action=books&page=<?php echo $_GET['page']-1;?>">Précédent</a>
+        </li>
+
+      <?php } ?>
+
+        <?php for ($i=1; $i <= $pagesTotales ; $i++) {
+          if ($i === $page) {
+            echo "<li class='page-item disabled'><a class='page-link' href=''>".$i."</a></li>";
+          }else {
+            echo "<li class='page-item '><a class='page-link' href='?action=books&page=".$i."'>".$i."</a></li>";
+          }
+        } ?>
+
+        <?php if ($page >= $pagesTotales) {?>
+          <li class="page-item disabled ">
+            <span class="page-link">Suivant</span>
+          </li>
+        <?php }else {?>
+          <li class="page-item">
+            <a class="page-link" href="?action=books&page=<?php echo $_GET['page']+1;?>">Suivant</a>
+          </li>
+
+        <?php } ?>
+      </ul>
+    </nav>
+  </div>
 
 <!--pre>
 <?php// var_dump($books); ?>

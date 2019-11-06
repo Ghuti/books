@@ -23,7 +23,7 @@
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="?action=books">List of books</a>
+              <a class="nav-link" href="?action=books&page=1">List of books</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">

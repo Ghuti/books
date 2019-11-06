@@ -2,8 +2,7 @@
 
 require_once('utils/db.php');
 
-
-
+$limit = 20;
 function countBooks()
 {
   $db = dbConnect();
@@ -15,9 +14,10 @@ function countBooks()
 
 function getBooks()
 {
-  $limit = 20;
+  global $limit;
   $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
   $count = countBooks('');
+
   $offset = ($page -1) * $limit;
   $db = dbConnect();
 
@@ -27,20 +27,23 @@ function getBooks()
     FROM books AS b
     LEFT JOIN authors AS a
     ON b.author_id = a.id
-    LIMIT  :offsete, :limite
+    LIMIT :offset  , :limit
   ');
 
-  $stmt->bindParam(':offsete', $offset);
-  $stmt->bindParam(':limite', $limit);
+  $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+  $stmt->bindParam(':limit', $limit,  PDO::PARAM_INT);
   $stmt->execute();
 
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
-  /*
-  $file = file_get_contents('json/books.json');
-  $books = json_decode($file, true);
-  return $books;*/
+
 
 }
+
+
+
+
+
+
 
 function getBook($id)
 {
@@ -60,4 +63,6 @@ function getBook($id)
 
   return $stmt->fetch();
 }
+
+
 ?>
