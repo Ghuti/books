@@ -5,6 +5,18 @@
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $author = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  var_dump($_POST);
+  $title = (string) $_POST['title'];
+  $description = (string) $_POST['description'];
+  $year = (string) $_POST['year'];
+  $pages = (string) $_POST['pages'];
+  $country = (string) $_POST['country'];
+  $language = (string) $_POST['title'];
+
+  if (strlen($title) > 255 ){
+    $title = substr($title, 0 , 255);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -15,7 +27,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   </head>
-  <body class="">
+  <body class="mt-3">
     <div class="container blup rtl">
       <form class="" action="./" method="post">
         <div class="row">
@@ -44,16 +56,13 @@
             </div>
             <div class="form-group">
               <label for="year">Years</label>
-              <input name="year" min="0" type="number" class="form-control" id="year" >
+              <input name="year" type="number" class="form-control" id="year" >
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="description">Description</label>
-              <textarea name="description" class="form-control is-invalid" id="description" placeholder="Required example textarea" required></textarea>
-              <div class="invalid-feedback">
-                Please enter a message in the textarea.
-              </div>
+              <textarea name="description" class="form-control" id="description" placeholder="Required example textarea" required></textarea>
             </div>
             <div class="form-group">
               <label for="wikipedia">Wikipédia link</label>
@@ -72,7 +81,7 @@
           </div>
         </div>
         <div class="row">
-          <button type="button" class="btn rb-bg btn-lg btn-block">SUBMIT !</button>
+          <button type="submit" class="btn rb-bg btn-lg btn-block">SUBMIT !</button>
         </div>
       </form>
     </div>
