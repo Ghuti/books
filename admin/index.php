@@ -6,17 +6,66 @@
   $stmt->execute();
   $author = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  var_dump($_POST);
-  $title = (string) $_POST['title'];
-  $description = (string) $_POST['description'];
-  $year = (string) $_POST['year'];
-  $pages = (string) $_POST['pages'];
-  $country = (string) $_POST['country'];
-  $language = (string) $_POST['title'];
+  if (isset($_POST['blurpus']))
+  {
+    $title = (string) $_POST['title'];
+    $description = (string) $_POST['description'];
+    $year = (string) $_POST['year'];
+    $pages = (string) $_POST['pages'];
+    $country = (string) $_POST['country'];
+    $language = (string) $_POST['language'];
+    $authorID = (string) $_POST['authorID'];
+    $wikipedia = (string) $_POST['wikipedia'];
 
-  if (strlen($title) > 255 ){
-    $title = substr($title, 0 , 255);
+    if (strlen($title) > 255 ){
+      $title = substr($title, 0 , 255);
+    }
+    if (!preg_match('/^(http|https):\/\/([a-z]{2})\.wikipedia\.org\/([a-zA-Z0-9-_\/%:]+)?/i', $wikipedia)){
+      $wikipedia = '';
+    }
+    $stmt = $db->prepare('INSERT INTO
+      `books` (
+        `title`,
+        `description`,
+        `Year`,
+        `pages`,
+        `country`,
+        `language`,
+        `author_id`,
+        `wikipedia_link`
+      )
+      VALUES (
+        :title,
+        :description,
+        :year,
+        :pages,
+        :country,
+        :language,
+        :author_id,
+        :wikipedia_link
+      )
+    ');
+
+    $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+    $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+    $stmt->bindParam(':year', $year, PDO::PARAM_INT);
+    $stmt->bindParam(':pages', $pages, PDO::PARAM_INT);
+    $stmt->bindParam(':country', $country, PDO::PARAM_STR);
+    $stmt->bindParam(':language', $language, PDO::PARAM_STR);
+    $stmt->bindParam(':author_id', $authorID, PDO::PARAM_INT);
+    $stmt->bindParam(':wikipedia_link', $wikipedia, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    $id = $db->lastInsertId();
+
+    var_dump($id);
+
   }
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -38,8 +87,8 @@
               <small id="titleHelp" class="form-text text-muted">Indiquer titre du livre (entre 0 et 25 caractére)</small>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">author</label>
-              <select class="form-control" id="exampleFormControlSelect1">
+              <label for="authorID">author</label>
+              <select name="authorID" class="form-control" id="authorID">
                 <?php
                 foreach ($author as $auths)
                 {?>
@@ -62,11 +111,11 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="description">Description</label>
-              <textarea name="description" class="form-control" id="description" placeholder="Required example textarea" required></textarea>
+              <textarea name="description" class="form-control" id="description" placeholder="Required example textarea" ></textarea>
             </div>
             <div class="form-group">
               <label for="wikipedia">Wikipédia link</label>
-              <textarea name="wikipedia" class="form-control" id="wikipedia" placeholder="Required example textarea" required></textarea>
+              <textarea name="wikipedia" class="form-control" id="wikipedia" placeholder="Required example textarea" ></textarea>
             </div>
             <div class="form-group">
               <label for="country">country</label>
@@ -81,7 +130,7 @@
           </div>
         </div>
         <div class="row">
-          <button type="submit" class="btn rb-bg btn-lg btn-block">SUBMIT !</button>
+          <button name="blurpus" type="submit" class="btn rb-bg btn-lg btn-block">SUBMIT !</button>
         </div>
       </form>
     </div>
