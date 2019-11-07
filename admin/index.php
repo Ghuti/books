@@ -1,6 +1,19 @@
 <?php
   require_once('../utils/db.php');
   $db = dbConnect();
+
+  //GET books
+  $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+  if($id)
+  {
+  $stmt = $db->prepare('SELECT * FROM books WHERE id=:id');
+  $stmt->bindParam('id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+  $book = $stmt->fetch(PDO::FETCH_ASSOC);
+  var_dump($book);
+  }
+
+  //ADD books
   $sql = "SELECT * FROM authors ORDER BY name";
   $stmt = $db->prepare($sql);
   $stmt->execute();
@@ -58,14 +71,7 @@
     $stmt->execute();
 
     $id = $db->lastInsertId();
-
-    var_dump($id);
-
   }
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -83,7 +89,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="title">Title</label>
-              <input name="title" maxlength="25" type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter title">
+              <input name="title" value="<?php echo isset($book) ? $book['title']:''; ?>" maxlength="25" type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter title">
               <small id="titleHelp" class="form-text text-muted">Indiquer titre du livre (entre 0 et 25 caractére)</small>
             </div>
             <div class="form-group">
@@ -92,26 +98,29 @@
                 <?php
                 foreach ($author as $auths)
                 {?>
+                  <?php if(isset($book) && $book['author_id'] == $author['id'] ) { ?>
                   <option value="<?php echo $auths['id']; ?>"><?php echo $auths['name']; ?></option>
                 <?php
                 }
                  ?>
-                  <option></option>
+
               </select>
             </div>
             <div class="form-group">
               <label for="pages">pages</label>
-              <input name="pages" min="0" type="number" class="form-control" id="pages" >
+              <input name="pages" value="<?php echo isset($book) ? $book['pages']:''; ?>" min="0" type="number" class="form-control" id="pages" >
             </div>
             <div class="form-group">
               <label for="year">Years</label>
-              <input name="year" type="number" class="form-control" id="year" >
+              <input name="year" value="<?php echo isset($book) ? $book['year']:''; ?>" type="number" class="form-control" id="year" >
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="description">Description</label>
-              <textarea name="description" class="form-control" id="description" placeholder="Required example textarea" ></textarea>
+              <textarea name="description" class="form-control" id="description" placeholder="Required example textarea" >
+                <?php echo isset($book) ? $book['description']:''; ?>
+              </textarea>
             </div>
             <div class="form-group">
               <label for="wikipedia">Wikipédia link</label>
@@ -179,3 +188,7 @@
     }*/
   </style>
 </html>
+
+<!--option <?php //echo (isset($book) && $book['author_id'] === $author['id']) ? 'selected' : ''; ?> value="<?php //echo $author['id']; ?>">
+  <?php// echo $author['name']; ?>
+ </option>
