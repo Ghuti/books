@@ -39,7 +39,7 @@
           </form>
         </div>
       </nav>
-      <?php  echo crypt("Capoo"); ?>
+      <?php//  echo crypt("Capoo"); ?>
 
       <div class="container">
 
