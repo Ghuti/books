@@ -1,0 +1,4 @@
+AuthName "Admin"
+AuthType Basic
+AuthUserFile "/home/stagiare/Documents/project/php/admin/.htpasswd"
+Require valid-user

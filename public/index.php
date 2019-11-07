@@ -8,6 +8,13 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" type="image/png" href="public/images/books/favicon.jpeg" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1626218063779038",
+          enable_page_level_ads: true
+     });
+</script>
     </head>
 
     <body>
@@ -32,8 +39,22 @@
           </form>
         </div>
       </nav>
+      <?php  echo crypt("Capoo"); ?>
+
       <div class="container">
+
         <?php echo $content ?>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- ALAJI TEST -->
+        <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1626218063779038"
+        data-ad-slot="2143748150"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
 
       <footer class="py-4 bg-dark text-white">

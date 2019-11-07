@@ -3,7 +3,6 @@
 <h1>LIST OF BOOKS</h1>
 
 
-
   <div class="row">
     <?php
       foreach ($books as $book) { //echo '<li>' .$book['title'].'<li>' ;
@@ -14,11 +13,11 @@
               <?php
                 if(file_exists($book['image']))
                 {
-                  echo '<img class="card-img" src="' . $book['image'] .'">';
+                  echo '<img class="card-img " src="' . $book['image'] .'">';
                 }
                 else
                 {
-                  echo '<img class="what" src="https://media.giphy.com/media/14SGx6CtrLrj7dvOa3/giphy.gif">' ;
+                  echo '<img class="what" src="public/images/books/Error.png">' ;
                 }
                 ?>
               <hr>
@@ -69,6 +68,7 @@
       </ul>
     </nav>
   </div>
+
 
 <!--pre>
 <?php// var_dump($books); ?>
