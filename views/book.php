@@ -22,3 +22,12 @@
 </div>
 <?php $content = ob_get_clean(); ?>
 <?php require('public/index.php'); ?>
+
+<?php /* if($id)
+{
+  $stmt = $db->prepare('SELECT * FROM books WHERE id=:id');
+  $stmt->bindParam('id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+  $book = $stmt->fetch(PDO::FETCH_ASSOC);
+  //var_dump($book);
+} */?>

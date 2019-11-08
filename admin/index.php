@@ -4,14 +4,6 @@
 
   //GET books
   $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
-  if($id)
-  {
-  $stmt = $db->prepare('SELECT * FROM books WHERE id=:id');
-  $stmt->bindParam('id', $id, PDO::PARAM_INT);
-  $stmt->execute();
-  $book = $stmt->fetch(PDO::FETCH_ASSOC);
-  //var_dump($book);
-  }
 
   //ADD books
   $sql = "SELECT * FROM authors ORDER BY name";
@@ -85,28 +77,6 @@
         )
       ');
     }
-    $stmt = $db->prepare('INSERT INTO
-      `books` (
-        `title`,
-        `description`,
-        `year`,
-        `pages`,
-        `country`,
-        `language`,
-        `author_id`,
-        `wikipedia_link`
-      )
-      VALUES (
-        :title,
-        :description,
-        :year,
-        :pages,
-        :country,
-        :language,
-        :author_id,
-        :wikipedia_link
-      )
-    ');
 
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':description', $description, PDO::PARAM_STR);
@@ -120,11 +90,23 @@
 
     $stmt->execute();
 
-    $id = $db->lastInsertId();
+    if (!$id) {
+      $id = $db->lastInsertId();
+      header('Location:'.$_SERVER['REQUEST_URI'].'?id='. $id);
+    }
 
-
+    if($id)
+    {
+      $stmt = $db->prepare('SELECT * FROM books WHERE id=:id');
+      $stmt->bindParam('id', $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $book = $stmt->fetch(PDO::FETCH_ASSOC);
+      //var_dump($book);
+    }
   }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
